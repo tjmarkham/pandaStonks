@@ -173,6 +173,7 @@ for ticker in topFiveByPercent:
 
     count += 1
 
+print()
 print('    ', NAME_FORMAT.format('Total'), DOLLAR_FORMAT.format(INVEST_SPEND),
 COLUMN_DIVIDER, DOLLAR_FORMAT.format(totalClose), COLUMN_DIVIDER,
 DOLLAR_FORMAT.format(totalProfit), sep='')
