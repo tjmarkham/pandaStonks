@@ -26,6 +26,11 @@ $ python3 pandaStonks.py
 ```
 
 ## Example output
+Files:
+- `top100.csv`
+- `top100withCompanies.csv`
+
+Command line:
 ```
 $ python3 pandaStonks.py
 
