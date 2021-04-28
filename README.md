@@ -12,3 +12,7 @@ Show:
 ## Dependencies
 - Python 3
 - pandas - https://pandas.pydata.org
+
+```
+pip install pandas
+```
