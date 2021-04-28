@@ -48,6 +48,7 @@ Top 5 Picks:
 3)  Wynn Resorts Limited                           $ 200.00   |  $ 386.67   |  $ 186.67
 4)  The Boeing Company                             $ 200.00   |  $ 377.36   |  $ 177.36
 5)  NVIDIA Corporation                             $ 200.00   |  $ 370.69   |  $ 170.69
+
     Total                                          $ 1000.00  |  $ 1997.96  |  $ 997.96
 
                                      ROI   99.80 %
