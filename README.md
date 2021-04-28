@@ -1,4 +1,4 @@
-# pandaStonks
+# pandaStonks :panda_face: :chart_with_upwards_trend: 
 Investment Data Analysis w/ Pandas
 
 ## Objective
