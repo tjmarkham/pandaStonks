@@ -12,9 +12,12 @@ Show:
 ## Dependencies
 - Python 3
 - pandas - https://pandas.pydata.org
-
 ```
 pip install pandas
+```
+- matplotlib - https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html
+```
+pip install matplotlib
 ```
 
 ## Run Instructions
@@ -29,6 +32,7 @@ $ python3 pandaStonks.py
 Files:
 - `top100.csv`
 - `top100withCompanies.csv`
+- `roi_over_time.png`
 
 Command line:
 ```
