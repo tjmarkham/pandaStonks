@@ -1,4 +1,5 @@
 import pandas as pd
+import matplotlib.pyplot as plt
 
 #-------------------------------------------------------------------------------
 # Problem - If I had $1000 to retroactively invest, what basket of 5 tickers
@@ -54,9 +55,12 @@ top100wCompaniesDf.to_csv('top100withCompanies.csv', index = False)
 loadingString = ' analyzing data '
 print(loadingString, end = '', flush = True)
 
+dollarsPerStock = INVEST_SPEND / 5
+
 roiDollar = {}
 roiPercent = {}
 tickerToName = {}
+shares = {}
 
 bestDollarDayInfo = {}
 bestDollarDayInfo['value'] = 0;
@@ -134,6 +138,7 @@ for ticker in tickers :
     tickerToName[ticker] = companyName if companyName != 'nan' else ticker
     roiDollar[ticker] = roiDollarData
     roiPercent[ticker] = roiDollarData / firstPrice
+    shares[ticker] =  dollarsPerStock / firstPrice
 
 print()
 print()
@@ -150,16 +155,18 @@ print()
 sortedByPercent = sorted(roiPercent, key = roiPercent.get, reverse = True)
 topFiveByPercent = sortedByPercent[:5]
 
-dollarsPerStock = INVEST_SPEND / 5
-
 print('Top 5 Picks:')
 print('    ', NAME_FORMAT.format(''), ' Investment', COLUMN_DIVIDER,
 '    Close  ', COLUMN_DIVIDER, '   Profit', sep='')
 print()
 
+COLUMNS = ['date','close','ticker']
+topFiveDailyDf = pd.DataFrame([], columns = COLUMNS);
+
 count = 1
 totalProfit = 0
 totalClose = 0
+
 for ticker in topFiveByPercent:
     profit = dollarsPerStock * roiPercent[ticker]
     totalProfit += profit
@@ -173,6 +180,12 @@ for ticker in topFiveByPercent:
 
     count += 1
 
+    tickerData = (top100wCompaniesDf[top100wCompaniesDf['ticker'] == ticker]
+    [COLUMNS])
+
+    tickerData['myclose'] = tickerData['close'] * shares[ticker]
+    topFiveDailyDf = pd.concat([topFiveDailyDf, tickerData])
+
 print()
 print('    ', NAME_FORMAT.format('Total'), DOLLAR_FORMAT.format(INVEST_SPEND),
 COLUMN_DIVIDER, DOLLAR_FORMAT.format(totalClose), COLUMN_DIVIDER,
@@ -184,6 +197,18 @@ print(TITLE_FORMAT.format(roiString))
 
 print()
 print()
+
+# chart
+topFiveDailyDf = topFiveDailyDf.pivot(index = 'date', columns = 'ticker',
+values = 'myclose')
+
+roiDf = topFiveDailyDf.cumsum(axis = 1)[topFiveDailyDf.columns[-1]]
+
+plt.plot(roiDf);
+plt.xlabel('Date')
+plt.ylabel('Dollars ($)')
+plt.title('ROI Over Time')
+plt.savefig('roi_over_time.png')
 
 #-------------------------------------------------------------------------------
 # 2. Which tickers performed best/worst by dollar value and percent in the
@@ -310,3 +335,5 @@ print()
 
 print(SECTION_DIVIDER)
 print()
+
+plt.show()
