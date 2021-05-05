@@ -15,7 +15,7 @@ Show:
 ```
 pip install pandas
 ```
-- matplotlib - https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html
+- matplotlib - https://matplotlib.org/stable/index.html
 ```
 pip install matplotlib
 ```
